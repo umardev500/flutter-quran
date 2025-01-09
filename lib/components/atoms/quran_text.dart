@@ -36,7 +36,7 @@ class QuranText {
         color: Colors.teal,
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        fontFamily: "rcondensed",
+        fontFamily: "Roboto",
       ),
     );
   }
@@ -48,7 +48,8 @@ class QuranText {
         color: Colors.black87,
         fontSize: 16,
         fontWeight: FontWeight.w400,
-        fontFamily: "rcondensed",
+        fontFamily: "Roboto",
+        height: 1.5,
       ),
     );
   }

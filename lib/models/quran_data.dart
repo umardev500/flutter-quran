@@ -19,7 +19,7 @@ class QuranData {
       sura: json['sura'],
       aya: json['aya'],
       text: json['text'],
-      trText: "arabic",
+      trText: json['trText'],
     );
   }
 }

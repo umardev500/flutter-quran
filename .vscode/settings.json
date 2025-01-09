@@ -1,0 +1,10 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "Sqlite",
+      "database": "${workspaceFolder:quran}/assets/quran/quran.db"
+    }
+  ]
+}

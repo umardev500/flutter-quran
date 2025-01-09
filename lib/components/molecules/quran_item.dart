@@ -22,9 +22,10 @@ class QuranItem extends StatelessWidget {
               // Translation
               Row(
                 spacing: 8,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   QuranText.quranAya(quran.aya),
-                  QuranText.quranTranslation(quran.trText)
+                  Expanded(child: QuranText.quranTranslation(quran.trText))
                 ],
               )
             ],
