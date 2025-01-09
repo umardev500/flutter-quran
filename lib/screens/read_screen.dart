@@ -18,11 +18,14 @@ class _ReadScreenState extends State<ReadScreen> {
   @override
   void initState() {
     super.initState();
-    loadQuranBySura();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadQuranBySura();
+    });
   }
 
   Future<void> loadQuranBySura() async {
     try {
+      await Future.delayed(Duration(milliseconds: 300));
       List<QuranData> result =
           await QuranRepository.getQuranBySura(widget.sura);
 

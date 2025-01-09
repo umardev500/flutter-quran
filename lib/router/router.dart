@@ -37,12 +37,7 @@ class ReadScreenRoute extends GoRouteData {
   const ReadScreenRoute({required this.sura});
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return ReadScreen(sura: sura);
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CupertinoPage(child: ReadScreen(sura: sura));
   }
-
-  // @override
-  // Page<void> buildPage(BuildContext context, GoRouterState state) {
-  //   return CupertinoPage(child: ReadScreen(sura: sura));
-  // }
 }
