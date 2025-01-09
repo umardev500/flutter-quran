@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ReadScreen extends StatelessWidget {
-  const ReadScreen({super.key});
+  final int sura;
+
+  const ReadScreen({super.key, required this.sura});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Read Screen"),
+        child: Text("$sura"),
       ),
     );
   }

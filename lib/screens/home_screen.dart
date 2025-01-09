@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               SurahScreenRoute().push(context);
             },
-            child: Text("Navigate to surah"),
+            child: Text("Navigate"),
           ),
         ),
       ),

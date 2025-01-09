@@ -9,6 +9,7 @@ part of 'router.dart';
 List<RouteBase> get $appRoutes => [
       $homeScreenRoute,
       $surahScreenRoute,
+      $readScreenRoute,
     ];
 
 RouteBase get $homeScreenRoute => GoRouteData.$route(
@@ -43,6 +44,30 @@ extension $SurahScreenRouteExtension on SurahScreenRoute {
 
   String get location => GoRouteData.$location(
         '/surah',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $readScreenRoute => GoRouteData.$route(
+      path: '/read/:sura',
+      factory: $ReadScreenRouteExtension._fromState,
+    );
+
+extension $ReadScreenRouteExtension on ReadScreenRoute {
+  static ReadScreenRoute _fromState(GoRouterState state) => ReadScreenRoute(
+        sura: int.parse(state.pathParameters['sura']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/read/${Uri.encodeComponent(sura.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);
