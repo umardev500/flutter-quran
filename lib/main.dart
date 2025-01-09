@@ -7,7 +7,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.white,
+    systemNavigationBarColor: Colors.transparent,
   ));
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
