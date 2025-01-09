@@ -8,6 +8,23 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseHelper {
   static const String dbName = 'quran.db';
 
+  // Singleton instance
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
+
+  // Private constructor to prevent instantiation from outside
+  DatabaseHelper._internal();
+
+  // Factory constructor to return the singleton instance
+  factory DatabaseHelper() => _instance;
+
+  static Database? _database;
+
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await initializeDB();
+    return _database!;
+  }
+
   static Future<Database> initializeDB() async {
     // Get the applicatoin's documents directory
     Directory appDocDir = await getApplicationDocumentsDirectory();
