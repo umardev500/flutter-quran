@@ -4,13 +4,25 @@ class QuranText {
   static Widget quranText(String text) {
     return RichText(
       text: TextSpan(
-        text: text,
-        style: const TextStyle(
-          color: Colors.black87,
-          fontSize: 26,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Uthmanic",
-        ),
+        style: const TextStyle(fontSize: 26),
+        children: [
+          TextSpan(
+            text: text, // Original Quran text
+            style: const TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.w400,
+              fontFamily: "Uthmanic",
+            ),
+          ),
+          TextSpan(
+            text: " ١", // Space plus the Arabic number ١
+            style: const TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.w400,
+              fontFamily: "Hafs",
+            ),
+          ),
+        ],
       ),
       textAlign: TextAlign.right, // Align the entire RichText block
       textDirection: TextDirection.rtl, // Right-to-left for Quranic Arabic

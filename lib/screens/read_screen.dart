@@ -23,7 +23,8 @@ class _ReadScreenState extends State<ReadScreen> {
 
   Future<void> loadQuranBySura() async {
     try {
-      List<QuranData> result = await QuranRepository.getQuranBySura(1);
+      List<QuranData> result =
+          await QuranRepository.getQuranBySura(widget.sura);
 
       setState(() {
         quranList = result;

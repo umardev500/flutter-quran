@@ -82,6 +82,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Hafs
+      fonts:
+        - asset: assets/fonts/uthmanic_hafs_regular.ttf
     - family: Uthmanic
       fonts:
         - asset: assets/fonts/uthmanic_regular.ttf
