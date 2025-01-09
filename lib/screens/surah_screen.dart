@@ -45,11 +45,9 @@ class _SurahScreenState extends State<SurahScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          color: Color(0xFFf3f4f6),
-          child: SurahList(surahs: surahs),
-        ),
+      body: Container(
+        color: Color(0xFFf3f4f6),
+        child: SurahList(surahs: surahs),
       ),
     );
   }
