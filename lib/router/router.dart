@@ -19,9 +19,14 @@ class HomeScreenRoute extends GoRouteData {
 @immutable
 class SurahScreenRoute extends GoRouteData {
   @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return const CupertinoPage(child: SurahScreen());
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SurahScreen();
   }
+
+  // @override
+  // Page<void> buildPage(BuildContext context, GoRouterState state) {
+  //   return const CupertinoPage(child: SurahScreen());
+  // }
 }
 
 @TypedGoRoute<ReadScreenRoute>(path: '/read/:sura')
@@ -32,7 +37,12 @@ class ReadScreenRoute extends GoRouteData {
   const ReadScreenRoute({required this.sura});
 
   @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return CupertinoPage(child: ReadScreen(sura: sura));
+  Widget build(BuildContext context, GoRouterState state) {
+    return ReadScreen(sura: sura);
   }
+
+  // @override
+  // Page<void> buildPage(BuildContext context, GoRouterState state) {
+  //   return CupertinoPage(child: ReadScreen(sura: sura));
+  // }
 }
