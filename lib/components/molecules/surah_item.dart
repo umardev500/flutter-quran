@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran/components/atoms/surah/surah_atom.dart';
+import 'package:quran/components/atoms/surah_text.dart';
 import 'package:quran/models/surah_data.dart';
 import 'package:quran/router/router.dart';
 
@@ -51,16 +52,14 @@ class SurahItem extends StatelessWidget {
       spacing: 16,
       children: [
         // Surah number
-        SurahNumber(
-          number: surah.index,
-        ),
+        SurahText.numberText(surah.index),
         // Surah Name and info
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SurahName(name: surah.tname),
-            SurahTranslate(tname: surah.ename),
+            SurahText.nameText(surah.tname),
+            SurahText.translateText(surah.ename),
           ],
         )
       ],
