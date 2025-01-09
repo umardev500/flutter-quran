@@ -4,7 +4,7 @@ import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/surah_screen.dart';
 
 final GoRouter goRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/surah',
   routes: [
     GoRoute(
       path: '/',
