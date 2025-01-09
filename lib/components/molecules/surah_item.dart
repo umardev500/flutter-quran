@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quran/components/atoms/surah/surah_atom.dart';
 import 'package:quran/components/atoms/surah_text.dart';
 import 'package:quran/models/surah_data.dart';
 import 'package:quran/router/router.dart';
@@ -25,7 +24,7 @@ class SurahItem extends StatelessWidget {
               // Surah info
               _surahDetail(),
               // Arabic surah name right end
-              SurahNameArabic(name: surah.name)
+              SurahText.nameArabicText(surah.name)
             ],
           ),
         ));
