@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quran/utils/number_util.dart';
 
 class QuranText {
-  static Widget quranText(String text) {
+  static Widget quranText(String text, int aya) {
     return RichText(
       text: TextSpan(
         style: const TextStyle(fontSize: 26),
@@ -15,7 +16,7 @@ class QuranText {
             ),
           ),
           TextSpan(
-            text: " ١", // Space plus the Arabic number ١
+            text: " ${toArabicNumbers(aya)}", // Space plus the Arabic number ١
             style: const TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.w400,

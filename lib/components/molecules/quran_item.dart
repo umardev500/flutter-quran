@@ -17,7 +17,7 @@ class QuranItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 16,
             children: [
-              QuranText.quranText(quran.text),
+              QuranText.quranText(quran.text, quran.aya),
 
               // Translation
               Row(
