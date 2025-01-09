@@ -10,7 +10,10 @@ class SurahNumber extends StatelessWidget {
     return Text(
       "$number.",
       style: TextStyle(
-          fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+          fontSize: 16,
+          color: Colors.black87,
+          fontWeight: FontWeight.w500,
+          fontFamily: "Roboto"),
     );
   }
 }
@@ -26,10 +29,10 @@ class SurahName extends StatelessWidget {
     return Text(
       name,
       style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
+          color: Colors.black87,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
-          fontFamily: "rcondensed"),
+          fontFamily: "Roboto"),
     );
   }
 }
@@ -44,8 +47,9 @@ class SurahTranslate extends StatelessWidget {
     return Text(
       tname,
       style: TextStyle(
-        color: Colors.white,
+        color: Colors.black87,
         fontSize: 16,
+        fontFamily: "rcondensed",
       ),
     );
   }
@@ -62,9 +66,9 @@ class SurahNameArabic extends StatelessWidget {
     return Text(
       name,
       style: TextStyle(
-          color: Colors.white,
+          color: Colors.black87,
           fontSize: 25,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w700,
           fontFamily: "Uthmanic"),
     );
   }

@@ -13,7 +13,7 @@ class SurahList extends StatelessWidget {
       itemCount: surahs.length,
       itemBuilder: (context, index) {
         final surah = surahs[index];
-        return SurahItem(surahData: surah);
+        return SurahItem(surah: surah);
       },
     );
   }

@@ -46,7 +46,10 @@ class _SurahScreenState extends State<SurahScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SurahList(surahs: surahs),
+        child: Container(
+          color: Color(0xFFf3f4f6),
+          child: SurahList(surahs: surahs),
+        ),
       ),
     );
   }
