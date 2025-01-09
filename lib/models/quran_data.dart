@@ -12,4 +12,14 @@ class QuranData {
     required this.text,
     required this.trText,
   });
+
+  factory QuranData.fromJson(Map<String, dynamic> json) {
+    return QuranData(
+      index: json['index'],
+      sura: json['sura'],
+      aya: json['aya'],
+      text: json['text'],
+      trText: "arabic",
+    );
+  }
 }
