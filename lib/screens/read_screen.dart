@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran/components/organisms/quran_list.dart';
 import 'package:quran/models/quran_data.dart';
 import 'package:quran/repository/quran_repository.dart';
 
@@ -12,7 +13,7 @@ class ReadScreen extends StatefulWidget {
 }
 
 class _ReadScreenState extends State<ReadScreen> {
-  List<QuranData> quran = [];
+  List<QuranData> quranList = [];
 
   @override
   void initState() {
@@ -25,7 +26,7 @@ class _ReadScreenState extends State<ReadScreen> {
       List<QuranData> result = await QuranRepository.getQuranBySura(1);
 
       setState(() {
-        quran = result;
+        quranList = result;
       });
     } catch (e) {
       debugPrint("Failed to load data $e");
@@ -36,18 +37,8 @@ class _ReadScreenState extends State<ReadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
         color: Colors.white,
-        child: Center(
-          child: Text(
-            "Sura ${quran.length}",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-            ),
-          ),
-        ),
+        child: QuranList(quranList: quranList),
       ),
     );
   }
