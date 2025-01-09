@@ -1,52 +1,21 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:quran/components/organisms/surah_list.dart';
-import 'package:quran/models/surah_data.dart';
+import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List<SurahData> surahs = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadSurahData(); // Load data when the widget is initialized
-  }
-
-  Future<void> loadSurahData() async {
-    try {
-      // Load the file from assets
-      final String response =
-          await rootBundle.loadString("assets/quran/surahs.json");
-
-      // Decode the JSON into a List<dynamic>
-      List<dynamic> data = jsonDecode(response);
-
-      // Map each dynamic object to a SurahData object
-      List<SurahData> surahs = data.map((e) => SurahData.fromJson(e)).toList();
-
-      // Update the state with the loaded data
-      setState(() {
-        this.surahs = surahs;
-      });
-    } catch (e) {
-      debugPrint("Failed to load data $e");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SurahList(surahs: surahs),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              context.push("/surah");
+            },
+            child: Text("Navigate to surah"),
+          ),
+        ),
       ),
     );
   }

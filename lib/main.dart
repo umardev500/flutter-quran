@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quran/screens/home_screen.dart';
+import 'package:quran/router.dart';
 
 void main() {
   runApp(App());
@@ -10,13 +10,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: goRouter,
       title: 'Quran',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
     );
   }
 }
