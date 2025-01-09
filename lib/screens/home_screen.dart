@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:quran/router/router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
         child: Center(
           child: ElevatedButton(
             onPressed: () {
-              context.push("/surah");
+              SurahScreenRoute().push(context);
             },
             child: Text("Navigate to surah"),
           ),

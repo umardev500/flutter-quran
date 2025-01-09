@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quran/router.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quran/router/router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,12 +16,14 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final GoRouter router = GoRouter(routes: $appRoutes);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: goRouter,
+      routerConfig: router,
       title: 'Quran',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
