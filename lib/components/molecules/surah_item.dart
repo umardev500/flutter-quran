@@ -52,7 +52,7 @@ class SurahItem extends StatelessWidget {
       children: [
         // Surah number
         SurahNumber(
-          number: 12,
+          number: surah.index,
         ),
         // Surah Name and info
         Column(
