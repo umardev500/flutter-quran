@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:quran/components/molecules/menu_sheet/menu_item.dart';
 import 'package:quran/components/molecules/menu_sheet/menu_sheet.dart';
 import 'package:quran/models/quran_data.dart';
+import 'package:quran/utils/read_util.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void showReadBottomSheet(BuildContext context, {required QuranData data}) {
   showMenuSheet(context: context, items: [
@@ -39,7 +41,17 @@ void showReadBottomSheet(BuildContext context, {required QuranData data}) {
     MenuSheetItem(
       title: "Mark As Last Read",
       icon: Icons.check,
-      onTap: () {},
+      onTap: () async {
+        await ReadUtil.instance.saveLastRead(data);
+        Fluttertoast.showToast(
+          msg: "Aya ${data.aya} marked as last read",
+          toastLength: Toast.LENGTH_SHORT,
+        );
+
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
     ),
   ]);
 }
