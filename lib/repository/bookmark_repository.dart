@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:quran/helpers/db_helper.dart';
 import 'package:quran/models/bookmark_model.dart';
 import 'package:quran/models/folder_model.dart';
