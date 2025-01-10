@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:quran/components/molecules/menu_sheet/menu_item.dart';
 import 'package:quran/components/molecules/menu_sheet/menu_sheet.dart';
 import 'package:quran/models/quran_data.dart';
+import 'package:share_plus/share_plus.dart';
 
 void showReadBottomSheet(BuildContext context, {required QuranData data}) {
   showMenuSheet(context: context, items: [
@@ -22,7 +23,12 @@ void showReadBottomSheet(BuildContext context, {required QuranData data}) {
     MenuSheetItem(
       title: "Share Aya",
       icon: Icons.share,
-      onTap: () {},
+      onTap: () async {
+        final result = await Share.share(data.text);
+        if (result.status == ShareResultStatus.success && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
     ),
     MenuSheetItem(
       title: "Add To Bookmark",
