@@ -47,7 +47,7 @@ class _ReadScreenState extends State<ReadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Jump to aya
+    // Jump to aya immediately if aya is not null
     if (widget.aya != null &&
         quranList.isNotEmpty &&
         _itemScrollController.isAttached) {
