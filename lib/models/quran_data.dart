@@ -22,4 +22,14 @@ class QuranData {
       trText: json['trText'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'index': index,
+      'sura': sura,
+      'aya': aya,
+      'text': text,
+      'trText': trText,
+    };
+  }
 }
