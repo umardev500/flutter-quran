@@ -9,11 +9,23 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              SurahScreenRoute().push(context);
-            },
-            child: Text("Navigate"),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  BookmarkScreenRoute().push(context);
+                },
+                child: Text("Bookmark"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  SurahScreenRoute().push(context);
+                },
+                child: Text("Surah"),
+              ),
+            ],
           ),
         ),
       ),

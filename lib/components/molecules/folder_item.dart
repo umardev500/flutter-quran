@@ -31,7 +31,7 @@ class FolderItem extends StatelessWidget {
               ),
             ),
             title: Text(
-              folder.name,
+              "${folder.name} (${folder.bookmarkCount})",
               style: TextStyle(
                 fontSize: 16,
                 fontFamily: "rcondensed",

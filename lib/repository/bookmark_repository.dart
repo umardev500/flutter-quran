@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:quran/helpers/db_helper.dart';
 import 'package:quran/models/bookmark_model.dart';
 import 'package:quran/models/folder_model.dart';
@@ -19,11 +20,12 @@ class BookmarkRepository {
   // Get bookmarks by folder id
   static Future<List<Bookmark>> getBookmarksByFolderId(int folderId) async {
     final db = await _database();
-    final List<Map<String, dynamic>> maps = await db.query(
-      'bookmarks',
-      where: 'folder_id = ?',
-      whereArgs: [folderId],
-    );
+    final List<Map<String, dynamic>> maps = await db.rawQuery('''
+      SELECT b.*, s.tname as surah_name
+      FROM bookmarks b
+      JOIN surahs s ON s."index" = b.sura
+      WHERE b.folder_id = ?
+      ''', [folderId]);
 
     return maps
         .asMap()
@@ -40,9 +42,7 @@ class BookmarkRepository {
     SELECT
         f.id,
         f.name,
-        '[' || GROUP_CONCAT(
-            '{"sura":' || b.sura || ', "aya":' || b.aya || ', "created_at":' || b.created_at || '}'
-        ) || ']' AS bookmarks
+        count(b.id) as bookmark_count
     FROM folders f
     LEFT JOIN bookmarks b
         ON f.id = b.folder_id

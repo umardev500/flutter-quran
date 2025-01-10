@@ -28,7 +28,7 @@ class _BookmarkListScreenState extends State<BookmarkListScreen> {
         bookmarks = result;
       });
     } catch (e) {
-      debugPrint("Failed to load data $e");
+      debugPrint("Failed to load data list $e");
     }
   }
 

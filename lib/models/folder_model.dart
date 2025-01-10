@@ -1,13 +1,9 @@
-import 'dart:convert';
-
-import 'package:quran/models/bookmark_model.dart';
-
 class Folder {
   final int id;
   final String name;
-  final List<Bookmark> bookmarks;
+  final int bookmarkCount;
 
-  Folder({required this.id, required this.name, this.bookmarks = const []});
+  Folder({required this.id, required this.name, this.bookmarkCount = 0});
 
   // Covert Folder to map for Sqlite
   Map<String, dynamic> toMap() {
@@ -18,14 +14,10 @@ class Folder {
 
   // Convert Map to folder instance
   factory Folder.fromMap(Map<String, dynamic> map) {
-    final bookmarksJson =
-        map['bookmarks'] != null ? jsonDecode(map['bookmarks']) as List : [];
-    final bookmarks = bookmarksJson.map((e) => Bookmark.fromMap(e)).toList();
-
     return Folder(
       id: map['id'],
       name: map['name'],
-      bookmarks: bookmarks,
+      bookmarkCount: map['bookmark_count'],
     );
   }
 }

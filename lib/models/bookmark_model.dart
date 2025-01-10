@@ -30,7 +30,7 @@ class Bookmark {
   factory Bookmark.fromMap(Map<String, dynamic> map) {
     return Bookmark(
       id: map['id'],
-      surahName: "Quran",
+      surahName: map['surah_name'],
       sura: map['sura'],
       aya: map['aya'],
       createdAt: map['created_at'],
