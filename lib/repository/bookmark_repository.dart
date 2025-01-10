@@ -1,4 +1,5 @@
 import 'package:quran/helpers/db_helper.dart';
+import 'package:quran/models/bookmark_model.dart';
 import 'package:quran/models/folder_model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -13,6 +14,23 @@ class BookmarkRepository {
   static Future<int> createFolder(Folder folder) async {
     final db = await _database();
     return await db.insert('folders', folder.toMap());
+  }
+
+  // Get bookmarks by folder id
+  static Future<List<Bookmark>> getBookmarksByFolderId(int folderId) async {
+    final db = await _database();
+    final List<Map<String, dynamic>> maps = await db.query(
+      'bookmarks',
+      where: 'folder_id = ?',
+      whereArgs: [folderId],
+    );
+
+    return maps
+        .asMap()
+        .map((index, e) =>
+            MapEntry(index, Bookmark.fromMap(e)..index = index + 1))
+        .values
+        .toList();
   }
 
   // Get all folders with bookmarks
