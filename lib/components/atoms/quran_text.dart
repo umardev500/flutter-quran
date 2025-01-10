@@ -17,8 +17,8 @@ class QuranText {
           ),
           TextSpan(
             text: " ${toArabicNumbers(aya)}", // Space plus the Arabic number ١
-            style: const TextStyle(
-              color: Colors.black87,
+            style: TextStyle(
+              color: Colors.teal.shade800,
               fontWeight: FontWeight.w400,
               fontFamily: "Hafs",
             ),
@@ -34,7 +34,7 @@ class QuranText {
     return Text(
       "$aya.",
       style: TextStyle(
-        color: Colors.teal,
+        color: Colors.teal.shade800,
         fontSize: 16,
         fontWeight: FontWeight.w500,
         fontFamily: "Roboto",
