@@ -6,8 +6,9 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class ReadScreen extends StatefulWidget {
   final int sura;
+  final int? aya;
 
-  const ReadScreen({super.key, required this.sura});
+  const ReadScreen({super.key, required this.sura, this.aya});
 
   @override
   State<ReadScreen> createState() => _ReadScreenState();
@@ -46,6 +47,17 @@ class _ReadScreenState extends State<ReadScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Jump to aya
+    if (widget.aya != null &&
+        quranList.isNotEmpty &&
+        _itemScrollController.isAttached) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _itemScrollController.jumpTo(
+          index: widget.aya! - 1,
+        );
+      });
+    }
+
     return Scaffold(
       body: Container(
         color: Colors.white,

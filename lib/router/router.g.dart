@@ -65,10 +65,14 @@ RouteBase get $readScreenRoute => GoRouteData.$route(
 extension $ReadScreenRouteExtension on ReadScreenRoute {
   static ReadScreenRoute _fromState(GoRouterState state) => ReadScreenRoute(
         sura: int.parse(state.pathParameters['sura']!),
+        aya: _$convertMapValue('aya', state.uri.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
         '/read/${Uri.encodeComponent(sura.toString())}',
+        queryParams: {
+          if (aya != null) 'aya': aya!.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);
@@ -79,6 +83,15 @@ extension $ReadScreenRouteExtension on ReadScreenRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
 }
 
 RouteBase get $bookmarkScreenRoute => GoRouteData.$route(

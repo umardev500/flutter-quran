@@ -22,7 +22,8 @@ class BookmarkItem extends StatelessWidget {
       child: Stack(children: [
         ListTile(
           onTap: () {
-            ReadScreenRoute(sura: bookmark.sura).push(context);
+            ReadScreenRoute(sura: bookmark.sura, aya: bookmark.aya)
+                .push(context);
           },
           iconColor: Colors.grey.shade800,
           textColor: Colors.grey.shade800,

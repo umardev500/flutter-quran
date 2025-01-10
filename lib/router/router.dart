@@ -35,12 +35,13 @@ class SurahScreenRoute extends GoRouteData {
 @immutable
 class ReadScreenRoute extends GoRouteData {
   final int sura;
+  final int? aya;
 
-  const ReadScreenRoute({required this.sura});
+  const ReadScreenRoute({required this.sura, this.aya});
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return CupertinoPage(child: ReadScreen(sura: sura));
+    return CupertinoPage(child: ReadScreen(sura: sura, aya: aya));
   }
 }
 
