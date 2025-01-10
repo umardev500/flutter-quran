@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quran/screens/bookmark_list_screen.dart';
 import 'package:quran/screens/bookmark_screen.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/read_screen.dart';
@@ -43,11 +44,25 @@ class ReadScreenRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<BookmarkScreenRoute>(path: '/bookmark')
+@TypedGoRoute<BookmarkScreenRoute>(
+    path: '/bookmark',
+    routes: [TypedGoRoute<BookmarkListScreenRoute>(path: "list/:id")])
 @immutable
 class BookmarkScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const BookmarkScreen();
+  }
+}
+
+@immutable
+class BookmarkListScreenRoute extends GoRouteData {
+  final int id;
+
+  const BookmarkListScreenRoute({required this.id});
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return BookmarkListScreen(id: id);
   }
 }

@@ -84,6 +84,12 @@ extension $ReadScreenRouteExtension on ReadScreenRoute {
 RouteBase get $bookmarkScreenRoute => GoRouteData.$route(
       path: '/bookmark',
       factory: $BookmarkScreenRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'list/:id',
+          factory: $BookmarkListScreenRouteExtension._fromState,
+        ),
+      ],
     );
 
 extension $BookmarkScreenRouteExtension on BookmarkScreenRoute {
@@ -92,6 +98,26 @@ extension $BookmarkScreenRouteExtension on BookmarkScreenRoute {
 
   String get location => GoRouteData.$location(
         '/bookmark',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $BookmarkListScreenRouteExtension on BookmarkListScreenRoute {
+  static BookmarkListScreenRoute _fromState(GoRouterState state) =>
+      BookmarkListScreenRoute(
+        id: int.parse(state.pathParameters['id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/bookmark/list/${Uri.encodeComponent(id.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);

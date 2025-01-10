@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:quran/models/bookmark_model.dart';
 
 class Folder {
-  final int? id;
+  final int id;
   final String name;
   final List<Bookmark> bookmarks;
 

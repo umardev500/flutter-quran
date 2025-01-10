@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran/models/folder_model.dart';
+import 'package:quran/router/router.dart';
 
 class FolderItem extends StatelessWidget {
   final Folder folder;
@@ -16,7 +17,7 @@ class FolderItem extends StatelessWidget {
             iconColor: Colors.grey.shade700,
             textColor: Colors.grey.shade700,
             onTap: () {
-              debugPrint("navigate");
+              BookmarkListScreenRoute(id: folder.id).go(context);
             },
             leading: Icon(Icons.folder_rounded),
             trailing: InkWell(
