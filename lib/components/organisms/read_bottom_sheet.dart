@@ -27,7 +27,6 @@ void showReadBottomSheet(BuildContext context) {
     ),
     MenuSheetItem(
       title: "Mark As Last Read",
-      iconColor: Colors.green.shade900,
       icon: Icons.check,
       onTap: () {},
     ),
