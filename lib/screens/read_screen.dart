@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quran/components/organisms/quran_list.dart';
-import 'package:quran/components/organisms/read_bottom_sheet.dart';
 import 'package:quran/models/quran_data.dart';
 import 'package:quran/repository/quran_repository.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -48,12 +47,6 @@ class _ReadScreenState extends State<ReadScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showReadBottomSheet(context);
-        },
-        child: Icon(Icons.book),
-      ),
       body: Container(
         color: Colors.white,
         child: QuranList(
