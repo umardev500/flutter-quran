@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:quran/models/bookmark_model.dart';
+import 'package:quran/router/router.dart';
 
 class BookmarkItem extends StatelessWidget {
   final Bookmark bookmark;
@@ -20,7 +21,9 @@ class BookmarkItem extends StatelessWidget {
       color: Colors.transparent,
       child: Stack(children: [
         ListTile(
-          onTap: () {},
+          onTap: () {
+            ReadScreenRoute(sura: bookmark.sura).push(context);
+          },
           iconColor: Colors.grey.shade800,
           textColor: Colors.grey.shade800,
           tileColor: Colors.white,
