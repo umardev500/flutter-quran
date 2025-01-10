@@ -12,7 +12,7 @@ class Folder {
   }
 
   // Convert Map to folder instance
-  static Folder fromMap(Map<String, dynamic> map) {
+  factory Folder.fromMap(Map<String, dynamic> map) {
     return Folder(id: map['id'], name: map['name']);
   }
 }
