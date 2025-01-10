@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
       $homeScreenRoute,
       $surahScreenRoute,
       $readScreenRoute,
+      $bookmarkScreenRoute,
     ];
 
 RouteBase get $homeScreenRoute => GoRouteData.$route(
@@ -68,6 +69,29 @@ extension $ReadScreenRouteExtension on ReadScreenRoute {
 
   String get location => GoRouteData.$location(
         '/read/${Uri.encodeComponent(sura.toString())}',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $bookmarkScreenRoute => GoRouteData.$route(
+      path: '/bookmark',
+      factory: $BookmarkScreenRouteExtension._fromState,
+    );
+
+extension $BookmarkScreenRouteExtension on BookmarkScreenRoute {
+  static BookmarkScreenRoute _fromState(GoRouterState state) =>
+      BookmarkScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/bookmark',
       );
 
   void go(BuildContext context) => context.go(location);

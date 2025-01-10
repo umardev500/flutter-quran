@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quran/screens/bookmark_screen.dart';
 import 'package:quran/screens/home_screen.dart';
 import 'package:quran/screens/read_screen.dart';
 import 'package:quran/screens/surah_screen.dart';
@@ -39,5 +40,14 @@ class ReadScreenRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return CupertinoPage(child: ReadScreen(sura: sura));
+  }
+}
+
+@TypedGoRoute<BookmarkScreenRoute>(path: '/bookmark')
+@immutable
+class BookmarkScreenRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const BookmarkScreen();
   }
 }
