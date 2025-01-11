@@ -12,32 +12,64 @@ class BookmarkListScreen extends StatefulWidget {
 }
 
 class _BookmarkListScreenState extends State<BookmarkListScreen> {
-  List<Bookmark> bookmarks = [];
-
   @override
   void initState() {
     super.initState();
-    loadBookmarks();
   }
 
-  Future<void> loadBookmarks() async {
+  Future<List<Bookmark>> loadBookmarks() async {
     try {
       List<Bookmark> result =
           await BookmarkRepository.getBookmarksByFolderId(widget.id);
-      setState(() {
-        bookmarks = result;
-      });
+
+      return result;
     } catch (e) {
       debugPrint("Failed to load data list $e");
+      return [];
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("Bookmarks", style: TextStyle()),
+        titleSpacing: 0,
+        shadowColor: Colors.black.withAlpha(30),
+        surfaceTintColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(
+            color: Colors.grey.shade200,
+            height: 1.0,
+          ),
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
+        ],
+      ),
       body: Container(
         color: Colors.white,
-        child: BookmarkList(bookmarks: bookmarks),
+        child: SafeArea(
+            child: FutureBuilder(
+          future: loadBookmarks(),
+          builder: (ctx, snap) {
+            if (snap.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (snap.data!.isEmpty) {
+              return Center(
+                child: Text("No bookmarks"),
+              );
+            }
+
+            return BookmarkList(bookmarks: snap.data!);
+          },
+        )),
       ),
     );
   }
