@@ -17,6 +17,10 @@ class ReadScreen extends StatefulWidget {
 class _ReadScreenState extends State<ReadScreen> {
   List<QuranData> quranList = [];
   final ItemScrollController _itemScrollController = ItemScrollController();
+  final ScrollOffsetController _scrollOffsetController =
+      ScrollOffsetController();
+  final scrollOffsetListener = ScrollOffsetListener.create();
+  double currentScrollOffset = 0;
 
   @override
   void dispose() {
@@ -28,6 +32,11 @@ class _ReadScreenState extends State<ReadScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       loadQuranBySura();
+
+      // Listen to changes in the scroll offset
+      scrollOffsetListener.changes.listen((offset) {
+        currentScrollOffset = currentScrollOffset + offset;
+      });
     });
   }
 
@@ -51,10 +60,14 @@ class _ReadScreenState extends State<ReadScreen> {
     if (widget.aya != null &&
         quranList.isNotEmpty &&
         _itemScrollController.isAttached) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _itemScrollController.jumpTo(
-          index: widget.aya! - 1,
-        );
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await Future.delayed(Duration(milliseconds: 300));
+
+        // _itemScrollController.scrollTo(
+        //   index: widget.aya! - 1,
+        //   duration: const Duration(milliseconds: 300),
+        //   curve: Curves.ease,
+        // );
       });
     }
 
@@ -62,7 +75,11 @@ class _ReadScreenState extends State<ReadScreen> {
       body: Container(
         color: Colors.white,
         child: QuranList(
-            quranList: quranList, itemScrollController: _itemScrollController),
+          quranList: quranList,
+          itemScrollController: _itemScrollController,
+          scrollOffsetController: _scrollOffsetController,
+          scrollOffsetListener: scrollOffsetListener,
+        ),
       ),
     );
   }
