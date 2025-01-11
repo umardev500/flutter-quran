@@ -16,7 +16,7 @@ class QuranItem extends StatelessWidget {
             showReadBottomSheet(context, data: quran);
           },
           child: Container(
-            margin: EdgeInsets.only(bottom: 16, left: 16, right: 16),
+            margin: EdgeInsets.only(bottom: 16),
             padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
