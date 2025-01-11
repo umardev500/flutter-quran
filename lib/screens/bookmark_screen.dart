@@ -33,9 +33,27 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("Bookmark"),
+        titleSpacing: 0,
+        shadowColor: Colors.black.withAlpha(30),
+        surfaceTintColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(
+            color: Colors.grey.shade200,
+            height: 1.0,
+          ),
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.add_rounded)),
+        ],
+      ),
       body: Container(
         color: Colors.white,
-        child: FolderList(folders: bookmarks),
+        child: SafeArea(child: FolderList(folders: bookmarks)),
       ),
     );
   }
