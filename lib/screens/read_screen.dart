@@ -18,10 +18,9 @@ class ReadScreen extends StatefulWidget {
 class _ReadScreenState extends State<ReadScreen> {
   List<QuranData> quranList = [];
   final ItemScrollController _itemScrollController = ItemScrollController();
-  final ScrollOffsetController _scrollOffsetController =
-      ScrollOffsetController();
-  final scrollOffsetListener = ScrollOffsetListener.create();
-  double currentScrollOffset = 0;
+  final ItemPositionsListener _itemPositionsListener =
+      ItemPositionsListener.create();
+  int currentIndex = 0;
 
   @override
   void dispose() {
@@ -31,72 +30,62 @@ class _ReadScreenState extends State<ReadScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadQuranBySura();
 
-      // Listen to changes in the scroll offset
-      scrollOffsetListener.changes.listen((offset) {
-        currentScrollOffset = currentScrollOffset + offset;
-      });
+    // Listen last index and change the current index
+    _itemPositionsListener.itemPositions.addListener(() {
+      final position = _itemPositionsListener.itemPositions.value;
+      final currentItem = position.first;
+
+      currentIndex = currentItem.index;
     });
   }
 
   // Load quran by sura
-  Future<void> loadQuranBySura() async {
+  Future<QuranDataResult> loadQuranBySura() async {
     try {
       await Future.delayed(Duration(milliseconds: 300));
+      // Get the quran
       List<QuranData> result =
           await QuranRepository.getQuranBySura(widget.sura);
 
-      setState(() {
-        quranList = result;
-      });
+      // Get the last read index
+      int lastAya =
+          widget.aya ?? (await ReadUtil.instance.getLastReadIndex(widget.sura));
+
+      return QuranDataResult(quran: result, aya: lastAya);
     } catch (e) {
       debugPrint("Failed to load data $e");
+      return QuranDataResult(quran: [], aya: 1);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (quranList.isNotEmpty) {
-      // Jump to aya immediately if aya is not null
-      if (widget.aya != null && _itemScrollController.isAttached) {
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          _itemScrollController.jumpTo(
-            index: widget.aya! - 1,
-          );
-        });
-      } else {
-        // If aya is null, scroll to the last read position if it exists
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ReadUtil.instance.getLastReadOffset(widget.sura).then((value) {
-            if (value > 0) {
-              _scrollOffsetController.animateScroll(
-                  offset: value,
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.ease);
-            }
-          });
-        });
-      }
-    }
-
     return PopScope(
       // Handle the back action
       onPopInvokedWithResult: (status, obj) {
-        // Save the last read position
-        ReadUtil.instance.saveLastReadOffset(widget.sura, currentScrollOffset);
+        // Save the last read index
+        ReadUtil.instance.saveLastReadIndex(widget.sura, currentIndex);
       },
       child: Scaffold(
         body: Container(
-          color: Colors.white,
-          child: QuranList(
-            quranList: quranList,
-            itemScrollController: _itemScrollController,
-            scrollOffsetController: _scrollOffsetController,
-            scrollOffsetListener: scrollOffsetListener,
-          ),
-        ),
+            color: Colors.white,
+            child: FutureBuilder(
+                future: loadQuranBySura(),
+                builder: (ctx, snap) {
+                  if (snap.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return QuranList(
+                    quranList: snap.data!.quran,
+                    itemScrollController: _itemScrollController,
+                    itemPositionsListener: _itemPositionsListener,
+                    initalIndex: snap.data!.aya,
+                  );
+                })),
       ),
     );
   }

@@ -41,7 +41,11 @@ class ReadScreenRoute extends GoRouteData {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return CupertinoPage(child: ReadScreen(sura: sura, aya: aya));
+    return CupertinoPage(
+        child: ReadScreen(
+      sura: sura,
+      aya: aya,
+    ));
   }
 }
 
@@ -58,7 +62,7 @@ class BookmarkScreenRoute extends GoRouteData {
 
 @immutable
 class BookmarkListScreenRoute extends GoRouteData {
-  final int id;
+  final int id; // sura id
 
   const BookmarkListScreenRoute({required this.id});
 

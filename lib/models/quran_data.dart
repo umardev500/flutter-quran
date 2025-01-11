@@ -33,3 +33,10 @@ class QuranData {
     };
   }
 }
+
+class QuranDataResult {
+  final List<QuranData> quran;
+  final int aya;
+
+  QuranDataResult({required this.quran, required this.aya});
+}

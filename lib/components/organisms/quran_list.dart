@@ -6,22 +6,22 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class QuranList extends StatelessWidget {
   final List<QuranData> quranList;
   final ItemScrollController itemScrollController;
-  final ScrollOffsetController scrollOffsetController;
-  final ScrollOffsetListener scrollOffsetListener;
+  final ItemPositionsListener itemPositionsListener;
+  final int initalIndex;
 
   const QuranList(
       {super.key,
       required this.quranList,
       required this.itemScrollController,
-      required this.scrollOffsetController,
-      required this.scrollOffsetListener});
+      required this.itemPositionsListener,
+      required this.initalIndex});
 
   @override
   Widget build(BuildContext context) {
     return ScrollablePositionedList.builder(
+      itemPositionsListener: itemPositionsListener,
+      initialScrollIndex: initalIndex,
       itemScrollController: itemScrollController,
-      scrollOffsetController: scrollOffsetController,
-      scrollOffsetListener: scrollOffsetListener,
       itemCount: quranList.length,
       itemBuilder: (context, index) {
         final item = quranList[index];

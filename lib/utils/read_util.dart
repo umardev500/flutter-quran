@@ -21,18 +21,18 @@ class ReadUtil {
   }
 
   // Save last read offset
-  Future<void> saveLastReadOffset(int id, double offset) async {
-    // Key formula is sura_id id + "offset"
-    final key = "${id}_offset";
+  Future<void> saveLastReadIndex(int id, int index) async {
+    // Key formula is sura_id id + "index"
+    final key = "${id}_index";
 
-    await SharedPrefStorage.instance.saveValue(key, offset);
+    await SharedPrefStorage.instance.saveValue(key, index);
   }
 
   // Get last read offset
-  Future<double> getLastReadOffset(int id) async {
-    // Key formula is sura_id id + "offset"
-    final key = "${id}_offset";
+  Future<int> getLastReadIndex(int id) async {
+    // Key formula is sura_id id + "index"
+    final key = "${id}_index";
 
-    return await SharedPrefStorage.instance.getValue(key) ?? 0.0;
+    return await SharedPrefStorage.instance.getValue(key) ?? 0;
   }
 }

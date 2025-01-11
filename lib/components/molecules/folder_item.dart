@@ -17,7 +17,7 @@ class FolderItem extends StatelessWidget {
             iconColor: Colors.grey.shade700,
             textColor: Colors.grey.shade700,
             onTap: () {
-              BookmarkListScreenRoute(id: folder.id).go(context);
+              BookmarkListScreenRoute(id: folder.id).push(context);
             },
             leading: Icon(Icons.folder_rounded),
             trailing: InkWell(
