@@ -68,6 +68,24 @@ class _ReadScreenState extends State<ReadScreen> {
         ReadUtil.instance.saveLastReadIndex(widget.sura, currentIndex);
       },
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text("Surah name", style: TextStyle()),
+          titleSpacing: 0,
+          shadowColor: Colors.black.withAlpha(30),
+          surfaceTintColor: Colors.white,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(1.0),
+            child: Container(
+              color: Colors.grey.shade200,
+              height: 1.0,
+            ),
+          ),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_rounded)),
+          ],
+        ),
         body: Container(
             color: Colors.white,
             child: FutureBuilder(
