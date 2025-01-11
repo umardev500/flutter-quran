@@ -88,22 +88,24 @@ class _ReadScreenState extends State<ReadScreen> {
         ),
         body: Container(
             color: Colors.white,
-            child: FutureBuilder(
-                future: loadQuranBySura(),
-                builder: (ctx, snap) {
-                  if (snap.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
+            child: SafeArea(
+              child: FutureBuilder(
+                  future: loadQuranBySura(),
+                  builder: (ctx, snap) {
+                    if (snap.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
 
-                  return QuranList(
-                    quranList: snap.data!.quran,
-                    itemScrollController: _itemScrollController,
-                    itemPositionsListener: _itemPositionsListener,
-                    initalIndex: snap.data!.aya,
-                  );
-                })),
+                    return QuranList(
+                      quranList: snap.data!.quran,
+                      itemScrollController: _itemScrollController,
+                      itemPositionsListener: _itemPositionsListener,
+                      initalIndex: snap.data!.aya,
+                    );
+                  }),
+            )),
       ),
     );
   }
