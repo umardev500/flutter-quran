@@ -71,7 +71,7 @@ class _ReadScreenState extends State<ReadScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(widget.suraName!, style: TextStyle()),
+          title: Text(widget.suraName!),
           titleSpacing: 0,
           shadowColor: Colors.black.withAlpha(30),
           surfaceTintColor: Colors.white,
