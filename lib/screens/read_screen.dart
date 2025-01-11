@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran/components/atoms/animated_scrollto_fab.dart';
 import 'package:quran/components/organisms/quran_list.dart';
 import 'package:quran/components/organisms/read/read_appbar.dart';
 import 'package:quran/models/quran_data.dart';
@@ -23,6 +24,8 @@ class _ReadScreenState extends State<ReadScreen> {
   final ItemPositionsListener _itemPositionsListener =
       ItemPositionsListener.create();
   int currentIndex = 0;
+  int trackedIndex = 0;
+  final ValueNotifier<bool> _isFabVisible = ValueNotifier<bool>(false);
 
   @override
   void dispose() {
@@ -37,6 +40,13 @@ class _ReadScreenState extends State<ReadScreen> {
     _itemPositionsListener.itemPositions.addListener(() {
       final position = _itemPositionsListener.itemPositions.value;
       final currentItem = position.first;
+      final index = currentItem.index;
+
+      if (currentIndex > index) {
+        _isFabVisible.value = true;
+      } else if (currentIndex < index) {
+        _isFabVisible.value = false;
+      }
 
       currentIndex = currentItem.index;
     });
@@ -71,6 +81,8 @@ class _ReadScreenState extends State<ReadScreen> {
       },
       child: Scaffold(
         appBar: ReadAppBar(suraName: widget.suraName!),
+        floatingActionButton:
+            animatedScrollToFab(_isFabVisible, _itemScrollController),
         body: Container(
             color: Colors.white,
             child: SafeArea(
