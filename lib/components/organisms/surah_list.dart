@@ -11,6 +11,7 @@ class SurahList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: surahs.length,
+      padding: const EdgeInsets.only(top: 16),
       itemBuilder: (context, index) {
         final surah = surahs[index];
         return SurahItem(surah: surah);
