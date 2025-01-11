@@ -45,9 +45,27 @@ class _SurahScreenState extends State<SurahScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("Quran", style: TextStyle()),
+        titleSpacing: 0,
+        shadowColor: Colors.black.withAlpha(30),
+        surfaceTintColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(
+            color: Colors.grey.shade200,
+            height: 1.0,
+          ),
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+        ],
+      ),
       body: Container(
         color: Color(0xFFf3f4f6),
-        child: SurahList(surahs: surahs),
+        child: SafeArea(child: SurahList(surahs: surahs)),
       ),
     );
   }
