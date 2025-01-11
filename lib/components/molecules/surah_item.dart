@@ -12,7 +12,8 @@ class SurahItem extends StatelessWidget {
     return InkWell(
         onTap: () {
           // Navigate to read screen
-          ReadScreenRoute(sura: surah.index).push(context);
+          ReadScreenRoute(sura: surah.index, suraName: surah.tname)
+              .push(context);
         },
         child: Container(
           margin: EdgeInsets.only(bottom: 16, left: 16, right: 16),
