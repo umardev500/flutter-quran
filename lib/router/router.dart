@@ -35,9 +35,10 @@ class SurahScreenRoute extends GoRouteData {
 @immutable
 class ReadScreenRoute extends GoRouteData {
   final int sura;
-  final int? aya;
+  final int? aya; // An optional query parameter
+  final String? suraName;
 
-  const ReadScreenRoute({required this.sura, this.aya});
+  const ReadScreenRoute({required this.sura, this.aya, this.suraName});
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
@@ -45,6 +46,7 @@ class ReadScreenRoute extends GoRouteData {
         child: ReadScreen(
       sura: sura,
       aya: aya,
+      suraName: suraName ?? "Quran",
     ));
   }
 }

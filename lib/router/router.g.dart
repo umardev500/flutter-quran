@@ -66,12 +66,14 @@ extension $ReadScreenRouteExtension on ReadScreenRoute {
   static ReadScreenRoute _fromState(GoRouterState state) => ReadScreenRoute(
         sura: int.parse(state.pathParameters['sura']!),
         aya: _$convertMapValue('aya', state.uri.queryParameters, int.parse),
+        suraName: state.uri.queryParameters['sura-name'],
       );
 
   String get location => GoRouteData.$location(
         '/read/${Uri.encodeComponent(sura.toString())}',
         queryParams: {
           if (aya != null) 'aya': aya!.toString(),
+          if (suraName != null) 'sura-name': suraName,
         },
       );
 

@@ -8,8 +8,9 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class ReadScreen extends StatefulWidget {
   final int sura;
   final int? aya;
+  final String? suraName;
 
-  const ReadScreen({super.key, required this.sura, this.aya});
+  const ReadScreen({super.key, required this.sura, this.aya, this.suraName});
 
   @override
   State<ReadScreen> createState() => _ReadScreenState();
@@ -70,7 +71,7 @@ class _ReadScreenState extends State<ReadScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text("Surah name", style: TextStyle()),
+          title: Text(widget.suraName!, style: TextStyle()),
           titleSpacing: 0,
           shadowColor: Colors.black.withAlpha(30),
           surfaceTintColor: Colors.white,
