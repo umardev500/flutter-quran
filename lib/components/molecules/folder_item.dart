@@ -14,8 +14,8 @@ class FolderItem extends StatelessWidget {
       child: Stack(
         children: [
           ListTile(
-            iconColor: Colors.grey.shade700,
-            textColor: Colors.grey.shade700,
+            iconColor: Colors.grey.shade800,
+            textColor: Colors.grey.shade800,
             onTap: () {
               BookmarkListScreenRoute(id: folder.id).push(context);
             },
