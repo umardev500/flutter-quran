@@ -4,32 +4,8 @@ import 'package:quran/screens/bookmark_list_screen.dart';
 import 'package:quran/screens/bookmark_screen.dart';
 import 'package:quran/screens/main_screen.dart';
 import 'package:quran/screens/read_screen.dart';
-import 'package:quran/screens/tabs/home_tab.dart';
-import 'package:quran/screens/tabs/surah_tab.dart';
 
 part 'router.g.dart';
-
-// TAB SCREENS
-
-@immutable
-class HomeTabRoute extends GoRouteData {
-  const HomeTabRoute();
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return NoTransitionPage(child: HomeTab());
-  }
-}
-
-@immutable
-class SurahTabRoute extends GoRouteData {
-  const SurahTabRoute();
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return NoTransitionPage(child: SurahTab());
-  }
-}
 
 // STACK SCREENS
 
