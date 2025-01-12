@@ -7,52 +7,21 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $tabShellRouteData,
+      $mainScreenRoute,
       $readScreenRoute,
       $bookmarkScreenRoute,
     ];
 
-RouteBase get $tabShellRouteData => ShellRouteData.$route(
-      factory: $TabShellRouteDataExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: '/home',
-          factory: $HomeTabRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: '/surah',
-          factory: $SurahTabRouteExtension._fromState,
-        ),
-      ],
+RouteBase get $mainScreenRoute => GoRouteData.$route(
+      path: '/',
+      factory: $MainScreenRouteExtension._fromState,
     );
 
-extension $TabShellRouteDataExtension on TabShellRouteData {
-  static TabShellRouteData _fromState(GoRouterState state) =>
-      const TabShellRouteData();
-}
-
-extension $HomeTabRouteExtension on HomeTabRoute {
-  static HomeTabRoute _fromState(GoRouterState state) => const HomeTabRoute();
+extension $MainScreenRouteExtension on MainScreenRoute {
+  static MainScreenRoute _fromState(GoRouterState state) => MainScreenRoute();
 
   String get location => GoRouteData.$location(
-        '/home',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $SurahTabRouteExtension on SurahTabRoute {
-  static SurahTabRoute _fromState(GoRouterState state) => const SurahTabRoute();
-
-  String get location => GoRouteData.$location(
-        '/surah',
+        '/',
       );
 
   void go(BuildContext context) => context.go(location);

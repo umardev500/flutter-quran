@@ -9,19 +9,6 @@ import 'package:quran/screens/tabs/surah_tab.dart';
 
 part 'router.g.dart';
 
-@TypedShellRoute<TabShellRouteData>(routes: [
-  TypedGoRoute<HomeTabRoute>(path: "/home"),
-  TypedGoRoute<SurahTabRoute>(path: "/surah"),
-])
-class TabShellRouteData extends ShellRouteData {
-  const TabShellRouteData();
-
-  @override
-  Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
-    return MainScreen(child: navigator);
-  }
-}
-
 // TAB SCREENS
 
 @immutable
@@ -45,6 +32,15 @@ class SurahTabRoute extends GoRouteData {
 }
 
 // STACK SCREENS
+
+@TypedGoRoute<MainScreenRoute>(path: '/')
+@immutable
+class MainScreenRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const MainScreen(initialIndex: 0);
+  }
+}
 
 @TypedGoRoute<ReadScreenRoute>(path: '/read/:sura')
 @immutable

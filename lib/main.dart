@@ -19,8 +19,7 @@ void main() {
 class App extends StatelessWidget {
   App({super.key});
 
-  final GoRouter router =
-      GoRouter(routes: $appRoutes, initialLocation: "/home");
+  final GoRouter router = GoRouter(routes: $appRoutes, initialLocation: "/");
 
   @override
   Widget build(BuildContext context) {

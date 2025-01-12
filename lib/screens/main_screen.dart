@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:quran/components/atoms/icons.dart';
-import 'package:quran/router/router.dart';
+import 'package:quran/screens/tabs/home_tab.dart';
+import 'package:quran/screens/tabs/surah_tab.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key, required this.child});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key, required this.initialIndex});
 
-  final Widget child;
+  final int initialIndex;
 
-  int _getCurrentIndex(BuildContext ctx) {
-    final String location = GoRouterState.of(ctx).uri.path;
-    switch (location) {
-      case "/search":
-        return 1;
-      case "/surah":
-        return 2;
-      default:
-        return 0;
-    }
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
   }
+
+  final List<Widget> _screens = [
+    HomeTab(),
+    SurahTab(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final int currentIndex = _getCurrentIndex(context);
-
     return Scaffold(
-      body: child,
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
+        selectedIndex: _currentIndex,
         onDestinationSelected: (index) {
-          switch (index) {
-            case 0:
-              HomeTabRoute().go(context);
-            case 2:
-              SurahTabRoute().go(context);
-          }
+          setState(() {
+            _currentIndex = index;
+          });
         },
         destinations: [
           NavigationDestination(
