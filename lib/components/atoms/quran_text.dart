@@ -10,10 +10,10 @@ class QuranText {
           TextSpan(
             text: text, // Original Quran text
             style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Uthmanic",
-            ),
+                color: Colors.black87,
+                fontWeight: FontWeight.w400,
+                fontFamily: "Hafs",
+                fontFeatures: [FontFeature.enable('rlig')]),
           ),
           TextSpan(
             text: " ${toArabicNumbers(aya)}", // Space plus the Arabic number ١
