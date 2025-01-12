@@ -42,10 +42,12 @@ class _ReadScreenState extends State<ReadScreen> {
       final currentItem = position.first;
       final index = currentItem.index;
 
-      if (currentIndex > index) {
-        _isFabVisible.value = true;
-      } else if (currentIndex < index) {
-        _isFabVisible.value = false;
+      if (currentIndex != index) {
+        if (index < 5) {
+          _isFabVisible.value = false;
+        } else {
+          _isFabVisible.value = currentIndex > index;
+        }
       }
 
       currentIndex = currentItem.index;
