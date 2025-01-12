@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quran/screens/bookmark_list_screen.dart';
 import 'package:quran/screens/bookmark_screen.dart';
-import 'package:quran/screens/home_screen.dart';
+import 'package:quran/screens/main_screen.dart';
 import 'package:quran/screens/read_screen.dart';
 import 'package:quran/screens/surah_screen.dart';
 
@@ -13,7 +13,7 @@ part 'router.g.dart';
 class HomeScreenRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const HomeScreen();
+    return const MainScreen();
   }
 }
 
