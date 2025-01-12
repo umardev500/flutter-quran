@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran/components/atoms/icons.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -24,7 +25,12 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         destinations: [
-          NavigationDestination(icon: Icon(Icons.home_rounded), label: "Home"),
+          NavigationDestination(
+              icon: Icon(
+                CustomIcons.home,
+                fill: 1,
+              ),
+              label: "Home"),
           NavigationDestination(
               icon: Icon(Icons.search_rounded), label: "Search"),
           NavigationDestination(icon: Icon(Icons.book_rounded), label: "Surah"),
