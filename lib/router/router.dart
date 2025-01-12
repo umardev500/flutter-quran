@@ -4,6 +4,7 @@ import 'package:quran/screens/bookmark_list_screen.dart';
 import 'package:quran/screens/bookmark_screen.dart';
 import 'package:quran/screens/main_screen.dart';
 import 'package:quran/screens/read_screen.dart';
+import 'package:quran/screens/setting_screen.dart';
 
 part 'router.g.dart';
 
@@ -12,9 +13,22 @@ part 'router.g.dart';
 @TypedGoRoute<MainScreenRoute>(path: '/')
 @immutable
 class MainScreenRoute extends GoRouteData {
+  const MainScreenRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const MainScreen(initialIndex: 0);
+  }
+}
+
+@TypedGoRoute<SettingScreenRoute>(path: '/setting')
+@immutable
+class SettingScreenRoute extends GoRouteData {
+  const SettingScreenRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SettingScreen();
   }
 }
 
@@ -43,6 +57,8 @@ class ReadScreenRoute extends GoRouteData {
     routes: [TypedGoRoute<BookmarkListScreenRoute>(path: "list/:id")])
 @immutable
 class BookmarkScreenRoute extends GoRouteData {
+  const BookmarkScreenRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const BookmarkScreen();

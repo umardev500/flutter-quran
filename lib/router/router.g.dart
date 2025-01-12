@@ -8,6 +8,7 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
       $mainScreenRoute,
+      $settingScreenRoute,
       $readScreenRoute,
       $bookmarkScreenRoute,
     ];
@@ -18,10 +19,34 @@ RouteBase get $mainScreenRoute => GoRouteData.$route(
     );
 
 extension $MainScreenRouteExtension on MainScreenRoute {
-  static MainScreenRoute _fromState(GoRouterState state) => MainScreenRoute();
+  static MainScreenRoute _fromState(GoRouterState state) =>
+      const MainScreenRoute();
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $settingScreenRoute => GoRouteData.$route(
+      path: '/setting',
+      factory: $SettingScreenRouteExtension._fromState,
+    );
+
+extension $SettingScreenRouteExtension on SettingScreenRoute {
+  static SettingScreenRoute _fromState(GoRouterState state) =>
+      const SettingScreenRoute();
+
+  String get location => GoRouteData.$location(
+        '/setting',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -86,7 +111,7 @@ RouteBase get $bookmarkScreenRoute => GoRouteData.$route(
 
 extension $BookmarkScreenRouteExtension on BookmarkScreenRoute {
   static BookmarkScreenRoute _fromState(GoRouterState state) =>
-      BookmarkScreenRoute();
+      const BookmarkScreenRoute();
 
   String get location => GoRouteData.$location(
         '/bookmark',

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran/components/atoms/icons.dart';
+import 'package:quran/router/router.dart';
+import 'package:quran/screens/search_screen.dart';
 import 'package:quran/screens/tabs/home_tab.dart';
 import 'package:quran/screens/tabs/surah_tab.dart';
 
@@ -14,6 +16,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
+  final int settingIndex = 3;
 
   @override
   void initState() {
@@ -22,8 +25,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   final List<Widget> _screens = [
-    HomeTab(),
-    SurahTab(),
+    const HomeTab(),
+    const SearchScreen(),
+    const SurahTab(),
   ];
 
   @override
@@ -36,6 +40,12 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (index) {
+          if (index == settingIndex) {
+            // Navigate to the settings screen
+            SettingScreenRoute().push(context);
+
+            return;
+          }
           setState(() {
             _currentIndex = index;
           });
