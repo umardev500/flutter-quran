@@ -91,9 +91,6 @@ flutter:
     - family: Hafs
       fonts:
         - asset: assets/fonts/hafs.ttf
-    - family: Amiri
-      fonts:
-        - asset: assets/fonts/amiri_quran.ttf
     - family: Roboto
       fonts:
         - asset: assets/fonts/roboto_regular.ttf
