@@ -29,8 +29,8 @@ class HomeTabRoute extends GoRouteData {
   const HomeTabRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const HomeTab();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(child: HomeTab());
   }
 }
 
@@ -39,8 +39,8 @@ class SurahTabRoute extends GoRouteData {
   const SurahTabRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const SurahTab();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return NoTransitionPage(child: SurahTab());
   }
 }
 
