@@ -37,11 +37,7 @@ class SurahText {
   static Widget nameArabicText(String name) {
     return Text(
       name,
-      style: TextStyle(
-          color: Colors.black87,
-          fontSize: 25,
-          fontWeight: FontWeight.w700,
-          fontFamily: "Uthmanic"),
+      style: TextStyle(color: Colors.black87, fontSize: 25, fontFamily: "Hafs"),
     );
   }
 }
