@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:quran/components/organisms/surah_list.dart';
 import 'package:quran/models/surah_data.dart';
 
-class SurahScreen extends StatefulWidget {
-  const SurahScreen({super.key});
+class SurahTab extends StatefulWidget {
+  const SurahTab({super.key});
 
   @override
-  State<SurahScreen> createState() => _SurahScreenState();
+  State<SurahTab> createState() => _SurahTabState();
 }
 
-class _SurahScreenState extends State<SurahScreen> {
+class _SurahTabState extends State<SurahTab> {
   List<SurahData> surahs = [];
 
   @override
@@ -48,7 +48,6 @@ class _SurahScreenState extends State<SurahScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text("Quran", style: TextStyle()),
-        titleSpacing: 0,
         shadowColor: Colors.black.withAlpha(30),
         surfaceTintColor: Colors.white,
         bottom: PreferredSize(

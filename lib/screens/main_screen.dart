@@ -1,33 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quran/components/atoms/icons.dart';
 import 'package:quran/router/router.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key, required this.child});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
+  final Widget child;
 
-class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 0;
+  int _getCurrentIndex(BuildContext ctx) {
+    final String location = GoRouterState.of(ctx).uri.path;
+    switch (location) {
+      case "/search":
+        return 1;
+      case "/surah":
+        return 2;
+      default:
+        return 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final int currentIndex = _getCurrentIndex(context);
+
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              SurahScreenRoute().push(context);
-            },
-            child: Text("click")),
-      ),
+      body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
+          switch (index) {
+            case 0:
+              HomeTabRoute().go(context);
+            case 2:
+              SurahTabRoute().go(context);
+          }
         },
         destinations: [
           NavigationDestination(

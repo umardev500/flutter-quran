@@ -7,22 +7,35 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $homeScreenRoute,
-      $surahScreenRoute,
+      $tabShellRouteData,
       $readScreenRoute,
       $bookmarkScreenRoute,
     ];
 
-RouteBase get $homeScreenRoute => GoRouteData.$route(
-      path: '/',
-      factory: $HomeScreenRouteExtension._fromState,
+RouteBase get $tabShellRouteData => ShellRouteData.$route(
+      factory: $TabShellRouteDataExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: '/home',
+          factory: $HomeTabRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/surah',
+          factory: $SurahTabRouteExtension._fromState,
+        ),
+      ],
     );
 
-extension $HomeScreenRouteExtension on HomeScreenRoute {
-  static HomeScreenRoute _fromState(GoRouterState state) => HomeScreenRoute();
+extension $TabShellRouteDataExtension on TabShellRouteData {
+  static TabShellRouteData _fromState(GoRouterState state) =>
+      const TabShellRouteData();
+}
+
+extension $HomeTabRouteExtension on HomeTabRoute {
+  static HomeTabRoute _fromState(GoRouterState state) => const HomeTabRoute();
 
   String get location => GoRouteData.$location(
-        '/',
+        '/home',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -35,13 +48,8 @@ extension $HomeScreenRouteExtension on HomeScreenRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $surahScreenRoute => GoRouteData.$route(
-      path: '/surah',
-      factory: $SurahScreenRouteExtension._fromState,
-    );
-
-extension $SurahScreenRouteExtension on SurahScreenRoute {
-  static SurahScreenRoute _fromState(GoRouterState state) => SurahScreenRoute();
+extension $SurahTabRouteExtension on SurahTabRoute {
+  static SurahTabRoute _fromState(GoRouterState state) => const SurahTabRoute();
 
   String get location => GoRouteData.$location(
         '/surah',

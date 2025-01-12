@@ -4,32 +4,47 @@ import 'package:quran/screens/bookmark_list_screen.dart';
 import 'package:quran/screens/bookmark_screen.dart';
 import 'package:quran/screens/main_screen.dart';
 import 'package:quran/screens/read_screen.dart';
-import 'package:quran/screens/surah_screen.dart';
+import 'package:quran/screens/tabs/home_tab.dart';
+import 'package:quran/screens/tabs/surah_tab.dart';
 
 part 'router.g.dart';
 
-@TypedGoRoute<HomeScreenRoute>(path: '/')
-@immutable
-class HomeScreenRoute extends GoRouteData {
+@TypedShellRoute<TabShellRouteData>(routes: [
+  TypedGoRoute<HomeTabRoute>(path: "/home"),
+  TypedGoRoute<SurahTabRoute>(path: "/surah"),
+])
+class TabShellRouteData extends ShellRouteData {
+  const TabShellRouteData();
+
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const MainScreen();
+  Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
+    return MainScreen(child: navigator);
   }
 }
 
-@TypedGoRoute<SurahScreenRoute>(path: '/surah')
+// TAB SCREENS
+
 @immutable
-class SurahScreenRoute extends GoRouteData {
+class HomeTabRoute extends GoRouteData {
+  const HomeTabRoute();
+
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SurahScreen();
+    return const HomeTab();
   }
-
-  // @override
-  // Page<void> buildPage(BuildContext context, GoRouterState state) {
-  //   return const CupertinoPage(child: SurahScreen());
-  // }
 }
+
+@immutable
+class SurahTabRoute extends GoRouteData {
+  const SurahTabRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SurahTab();
+  }
+}
+
+// STACK SCREENS
 
 @TypedGoRoute<ReadScreenRoute>(path: '/read/:sura')
 @immutable
