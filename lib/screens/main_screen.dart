@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran/components/atoms/icons.dart';
+import 'package:quran/router/router.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,7 +16,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Main Screen"),
+        child: ElevatedButton(
+            onPressed: () {
+              SurahScreenRoute().push(context);
+            },
+            child: Text("click")),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
@@ -26,19 +31,25 @@ class _MainScreenState extends State<MainScreen> {
         },
         destinations: [
           NavigationDestination(
-              icon: Icon(
-                CustomIcons.home,
-                fill: 1,
-              ),
-              label: "Home"),
+            icon: Icon(CustomIcons.home),
+            selectedIcon: Icon(CustomIcons.home, fill: 1),
+            label: "Home",
+          ),
           NavigationDestination(
-              icon: Icon(Icons.search_rounded), label: "Search"),
-          NavigationDestination(icon: Icon(Icons.book_rounded), label: "Surah"),
+            icon: Icon(CustomIcons.search),
+            selectedIcon: Icon(CustomIcons.search, fill: 1),
+            label: "Search",
+          ),
           NavigationDestination(
-              icon: Icon(
-                Icons.settings_rounded,
-              ),
-              label: "Settings"),
+            icon: Icon(CustomIcons.book5),
+            selectedIcon: Icon(CustomIcons.book5, fill: 1),
+            label: "Surah",
+          ),
+          NavigationDestination(
+            icon: Icon(CustomIcons.settings),
+            selectedIcon: Icon(CustomIcons.settings, fill: 1),
+            label: "Settings",
+          ),
         ],
       ),
     );
