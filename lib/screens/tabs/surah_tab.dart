@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:quran/components/atoms/icons.dart';
 import 'package:quran/components/organisms/surah_list.dart';
 import 'package:quran/models/surah_data.dart';
 
@@ -58,8 +59,8 @@ class _SurahTabState extends State<SurahTab> {
           ),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          IconButton(onPressed: () {}, icon: Icon(CustomIcons.swapVert)),
+          IconButton(onPressed: () {}, icon: Icon(CustomIcons.search)),
         ],
       ),
       body: Container(
